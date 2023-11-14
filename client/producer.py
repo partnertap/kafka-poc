@@ -46,7 +46,7 @@ def publish(producer_instance, topic_name, key, value):
         print(str(ex))
 
 
-def get_kafka_producer(servers=['localhost:9092']):
+def get_kafka_producer(servers=['localhost:29092']):
     _producer = None
 
     conf = {

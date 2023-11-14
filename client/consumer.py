@@ -46,7 +46,7 @@ def subscribe(consumer_instance):
         print('Exception in subscribing.')
         print(str(ex))
 
-def get_kafka_consumer(topic_name, servers=['localhost:9092']):
+def get_kafka_consumer(topic_name, servers=['localhost:29092']):
     _consumer = None
 
     conf = {
