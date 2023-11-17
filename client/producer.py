@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from typing import Generator
 
 # Usage:
 # pip install kafka-python
@@ -17,21 +18,25 @@ def main(args):
     try:
         topic = args[0]
         key = args[1]
-        message = read_json(filepath="../json/data_sample.json")
-
-        print(message)
 
         producer = get_kafka_producer()
-        publish(producer, topic, key, message)
+
+        record = iter(read_json(filepath="../json/data_sample.json"))
+        while True:
+            try:
+                publish(producer, topic, key, next(record))
+            except StopIteration:
+                break
     except Exception as ex:
-        print("Failed to set topic, key, or message.")
+        print(str(ex))
 
 
 def read_json(filepath: str) -> str:
     with open(filepath) as data_file:
         data = json.load(data_file)
 
-        return json.dumps(data)
+        for record in data:
+            yield json.dumps(record)
 
 
 def publish(producer_instance, topic_name, key, value):
