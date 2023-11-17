@@ -64,4 +64,4 @@ def get_kafka_producer(servers=['localhost:9092']):
 
 
 if __name__ == "__main__":
-    main(["read", "s3", "test_message"])
+    main(["test", "s3", "test_message"])

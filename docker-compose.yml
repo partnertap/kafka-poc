@@ -5,6 +5,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - kafka-docker_default
     ports:
       - "2181:2181"
   kafka:
@@ -24,5 +26,11 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - kafka-docker_default
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  kafka-docker_default:
+    external: true

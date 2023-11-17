@@ -73,4 +73,4 @@ def get_kafka_consumer(topic_name, servers=['localhost:9092']):
         return _consumer
 
 if __name__ == "__main__":
-    main(["read"])
+    main(["test"])
